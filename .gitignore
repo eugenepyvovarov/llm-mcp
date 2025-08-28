@@ -1,5 +1,6 @@
 dist/*
 llm_mcp.egg-info/*
+llm_mcp_cli.egg-info/*
 packaging-env/*
 test-env/*
 
