@@ -1,0 +1,7 @@
+dist/*
+llm_mcp.egg-info/*
+packaging-env/*
+test-env/*
+
+__pycache__
+.claude/*

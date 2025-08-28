@@ -74,9 +74,11 @@ llm mcp add <name> <command> [args...] [options]
 # Add filesystem server
 llm mcp add filesystem npx @modelcontextprotocol/server-filesystem /Users/docs
 
-# Add GitHub server with token
-llm mcp add github npx @modelcontextprotocol/server-github \
-  --env GITHUB_PERSONAL_ACCESS_TOKEN=ghp_xxxx
+# First store your GitHub token (one-time setup)
+llm keys set GITHUB_PERSONAL_ACCESS_TOKEN
+
+# Add GitHub server (API key automatically resolved from LLM storage)
+llm mcp add github npx @modelcontextprotocol/server-github
 
 # Add server with description
 llm mcp add myserver python /path/to/server.py \
@@ -531,63 +533,6 @@ llm mcp list --with-status
 llm mcp test servername
 ```
 
-### Log Files
-
-Logs are stored in the configuration directory under `logs/`. Each server has its own log file for debugging connection issues.
-
-## Advanced Usage
-
-### Custom MCP Servers
-
-You can use any MCP-compatible server:
-
-```bash
-# Python-based server
-llm mcp add custom python /path/to/mcp_server.py \
-  --description "Custom Python MCP server"
-
-# Node.js server
-llm mcp add nodeserver node /path/to/server.js \
-  --env CONFIG_FILE=/path/to/config.json
-
-# Binary server
-llm mcp add binary /usr/local/bin/mcp-server \
-  --env PORT=8080 \
-  --env HOST=localhost
-```
-
-### Batch Operations
-
-```bash
-# Enable multiple servers
-for server in docs code github; do
-  llm mcp enable $server
-done
-
-# Test all enabled servers
-llm mcp list --enabled-only | grep "✓" | awk '{print $2}' | while read server; do
-  echo "Testing $server..."
-  llm mcp test $server
-done
-```
-
-### Integration with Scripts
-
-```bash
-#!/bin/bash
-# Get all tool names for scripting
-TOOLS=$(llm mcp tools --format names)
-
-# Use tools in a script
-for tool in $TOOLS; do
-  echo "Tool: $tool"
-  # Process each tool
-done
-
-# Get tools as command flags
-TOOL_FLAGS=$(llm mcp tools --format commands)
-llm -m gpt-4 $TOOL_FLAGS "Your prompt here"
-```
 
 ## Contributing
 
@@ -597,7 +542,7 @@ This is an open-source project. Contributions are welcome!
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/llm-mcp.git
+git clone https://github.com/eugenepyvovarov/llm-mcp.git
 cd llm-mcp
 
 # Install in development mode
@@ -609,11 +554,11 @@ pytest
 
 ## License
 
-MIT License - see LICENSE file for details.
+Apache 2.0 License - see LICENSE file for details.
 
 ## Support
 
 For issues, questions, or suggestions:
-- GitHub Issues: [github.com/yourusername/llm-mcp/issues](https://github.com/yourusername/llm-mcp/issues)
+- GitHub Issues: [github.com/eugenepyvovarov/llm-mcp/issues](https://github.com/eugenepyvovarov/llm-mcp/issues)
 - Documentation: This README
 - MCP Specification: [modelcontextprotocol.io](https://modelcontextprotocol.io)
