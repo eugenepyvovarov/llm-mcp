@@ -1,6 +1,6 @@
-# llm-mcp
+# llm-mcp-cli
 
-A comprehensive LLM plugin for Model Context Protocol (MCP) integration, enabling seamless interaction between LLM CLI and MCP servers.
+A comprehensive LLM CLI plugin for Model Context Protocol (MCP) integration, enabling seamless interaction between the LLM command-line tool and MCP servers.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ A comprehensive LLM plugin for Model Context Protocol (MCP) integration, enablin
 ## Installation
 
 ```bash
-pip install llm-mcp
+pip install llm-mcp-cli
 ```
 
 ### Requirements

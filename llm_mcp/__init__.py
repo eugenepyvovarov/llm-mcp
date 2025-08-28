@@ -9,7 +9,7 @@ from . import commands_tools  # Import to register the additional commands
 from .tool_provider import get_tool_provider
 from .utils import setup_logging
 
-__version__ = "1.0.2"
+__version__ = "1.0.4"
 
 # Set up logging
 logger = setup_logging(__name__)
