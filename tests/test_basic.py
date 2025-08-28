@@ -6,7 +6,7 @@ from llm_mcp import __version__
 
 def test_version():
     """Test that version is defined."""
-    assert __version__ == "1.0.4"
+    assert __version__ == "1.0.5"
 
 
 def test_import():

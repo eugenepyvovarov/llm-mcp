@@ -22,8 +22,8 @@ pip install llm-mcp-cli
 
 ### Requirements
 
-- Python 3.8 or higher
-- llm >= 0.13.0
+- Python 3.11 or higher
+- llm >= 0.27.0
 - MCP-compatible servers (e.g., `@modelcontextprotocol/server-filesystem`)
 
 ## Quick Start
@@ -425,15 +425,6 @@ llm mcp test firecrawl  # ✓ Uses FIRECRAWL_API_KEY from storage
 llm mcp test github     # ✓ Uses GITHUB_PERSONAL_ACCESS_TOKEN from storage
 ```
 
-**Supported API Keys (automatically resolved):**
-- `FIRECRAWL_API_KEY` - Firecrawl web scraping service
-- `GITHUB_PERSONAL_ACCESS_TOKEN`, `GITHUB_TOKEN` - GitHub API access
-- `OPENAI_API_KEY` - OpenAI API access
-- `ANTHROPIC_API_KEY` - Anthropic API access  
-- `GOOGLE_API_KEY` - Google services
-- `BRAVE_SEARCH_API_KEY` - Brave Search API
-- `TAVILY_API_KEY` - Tavily search API
-
 **Resolution Priority:**
 1. Environment variable (if already set)
 2. LLM key storage (`llm keys get KEY_NAME`)
@@ -456,29 +447,6 @@ llm mcp test docs
 
 # Get detailed information
 llm mcp describe docs
-```
-
-## Configuration
-
-The llm-mcp plugin stores its configuration in the LLM configuration directory:
-
-- **Config Directory**: `~/.config/io.datasette.llm/mcp/` (Unix/Linux/macOS)
-- **Config Directory**: `%APPDATA%\io.datasette.llm\mcp\` (Windows)
-
-### Configuration Files
-
-- `servers.json` - Server configurations
-- `logs/` - Server connection logs
-
-### Environment Variables
-
-Environment variables for servers are stored securely in the configuration and are not exposed in plain text when listing servers.
-
-To update environment variables:
-```bash
-# Remove and re-add the server with new variables
-llm mcp remove myserver
-llm mcp add myserver command args --env NEW_KEY=new_value
 ```
 
 ## Troubleshooting
@@ -510,13 +478,6 @@ llm mcp tools --server servername
 llm mcp test servername
 ```
 
-#### Environment variable issues
-```bash
-# Environment variables must be in KEY=value format
-llm mcp add server command --env KEY=value  # ✓ Correct
-llm mcp add server command --env KEY value   # ✗ Wrong
-```
-
 ### Debug Commands
 
 ```bash
@@ -544,12 +505,6 @@ This is an open-source project. Contributions are welcome!
 # Clone the repository
 git clone https://github.com/eugenepyvovarov/llm-mcp.git
 cd llm-mcp
-
-# Install in development mode
-pip install -e ".[dev]"
-
-# Run tests
-pytest
 ```
 
 ## License
