@@ -3,8 +3,8 @@ requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "llm-mcp"
-version = "1.0.0"
+name = "llm-mcp-cli"
+version = "1.0.2"
 description = "LLM plugin for Model Context Protocol (MCP) integration"
 readme = "README.md"
 requires-python = ">=3.11"
